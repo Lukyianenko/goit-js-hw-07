@@ -7,19 +7,27 @@ console.log(galleryItems);
 const galleryBox = document.querySelector('.gallery');
 const galleryMurkup = createImageGalleryMurkup(galleryItems);
 
-galleryBox.addEventListener('click', onImageClick);
+galleryBox.addEventListener('click', onImageClickOpen);
 
-function onImageClick(evt) {
+function onImageClickOpen(evt) {
   evt.preventDefault();
 
   const originalImg = evt.target.dataset.source;
-  console.log(originalImg);
-
-  const open = basicLightbox.create(`
+  const openedImage = basicLightbox.create(`
     <img src="${originalImg}">
 `)
+  openedImage.show();
 
-open.show()
+  galleryBox.addEventListener('keydown', onImageClickClose);
+  function onImageClickClose(evt) {
+    evt.preventDefault();
+   
+    if (basicLightbox.visible()) {
+      if (evt.key === 'Escape') {
+        openedImage.close();
+      }
+    }  
+  }
 }
 
 function createImageGalleryMurkup(galleryItems) {
