@@ -11,7 +11,10 @@ galleryBox.addEventListener('click', onImageClickOpen);
 
 function onImageClickOpen(evt) {
   evt.preventDefault();
-
+  if (evt.target === evt.currentTarget) {
+    return
+  }
+  
   const originalImg = evt.target.dataset.source;
   const openedImage = basicLightbox.create(`
     <img src="${originalImg}">
