@@ -21,7 +21,7 @@ function onImageClickOpen(evt) {
 `)
   openedImage.show();
 
-  galleryBox.addEventListener('keydown', onImageClickClose);
+  document.addEventListener('keydown', onImageClickClose);
   function onImageClickClose(evt) {
     evt.preventDefault();
    
