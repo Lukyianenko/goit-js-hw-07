@@ -28,6 +28,7 @@ function onImageClickOpen(evt) {
     if (basicLightbox.visible()) {
       if (evt.key === 'Escape') {
         openedImage.close();
+        document.removeEventListener('keydown', onImageClickClose);
       }
     }  
   }
